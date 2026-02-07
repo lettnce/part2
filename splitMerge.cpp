@@ -23,8 +23,6 @@ int main()
 
 	//Implement a simple print method to test your list.
 	A.print(); //450 320 750..... 530 210
-	A.slowSort();
-	A.print();
 	A.mergeSort();
 	A.print();
 

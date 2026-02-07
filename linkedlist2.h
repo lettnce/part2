@@ -191,7 +191,7 @@ void linkedList<T>::writeToFile(string s) {
 template <typename T>
 void linkedList<T>::slowSort() {
 
-    for (node *i = head; i->next->next; i = i->next) {
+    for (node *i = head; i->next; i = i->next) {
         node *min = i;
 
         for (node *j = i->next; j; j = j->next) {
@@ -209,17 +209,17 @@ void linkedList<T>::slowSort() {
 template <typename T>
 void linkedList<T>::mergeSort() {
 
-    linkedList<T> L;
-    linkedList<T> R;
-
-    if (size() <= 1) {
-        merge(L,R);
-    }
-    else {
-        split(L,R);
-        mergeSort();
+    if (!head || !head->next) {
+        return;
     }
 
+    linkedList<T> l, r;
+    split(l, r);
+
+    l.mergeSort();
+    r.mergeSort();
+    this->merge(l, r);
+    
 }
 
 #endif
