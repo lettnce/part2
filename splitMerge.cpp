@@ -1,4 +1,4 @@
-#include "linkedlist.h"
+#include "linkedlist2.h"
 
 //Implement a (singly or doubly) linked list that supports
 //the following methods.
@@ -23,40 +23,44 @@ int main()
 
 	//Implement a simple print method to test your list.
 	A.print(); //450 320 750..... 530 210
+	A.slowSort();
+	A.print();
+	A.mergeSort();
+	A.print();
 
-	linkedList<double> left;
-	linkedList<double> right;
+	// linkedList<double> left;
+	// linkedList<double> right;
 
 	//Split the contents of list A evenly into the two given (initially empty) lists.
 	//If the number of items in the list is odd, put the extra item in the first list.
 	//Must run in O(n) time, where n is the total number of items in the list.
 	// A.split(left, right);
 
-	A.print(); //(empty)
-	left.print(); //450 320 750 510 720 230
-	right.print(); //290 240 320 820 530 210
+	// A.print(); //(empty)
+	// left.print(); //450 320 750 510 720 230
+	// right.print(); //290 240 320 820 530 210
 
-	//Implement a sorting routine for your list
-	//You may implement any elementary sorting algorithm.
+	// Implement a sorting routine for your list
+	// You may implement any elementary sorting algorithm.
 	// left.slowSort();
 	// right.slowSort();
 
-	left.print(); //230 320 450 510 720 750
-	right.print(); //210 240 290 320 530 820
+	// left.print(); //230 320 450 510 720 750
+	// right.print(); //210 240 290 320 530 820
 
-	//Implement a method that takes 2 sorted lists and merges them
-	//into your (initially empty) list to create one sorted list.
-	//Must run in O(n) time, where n is the total number of items in the two given lists.
+	// Implement a method that takes 2 sorted lists and merges them
+	// into your (initially empty) list to create one sorted list.
+	// Must run in O(n) time, where n is the total number of items in the two given lists.
 	// A.merge(left, right);
 
-	left.print(); //(empty)
-	right.print(); //(empty)
-	A.print(); //210 230 240 290 320 320 450 510 530 720 750 820
+	// left.print(); //(empty)
+	// right.print(); //(empty)
+	// A.print(); //210 230 240 290 320 320 450 510 530 720 750 820
 
 
-	//Add a methods to load your list from a file, and write your list to a file
-	linkedList<string> B;
-	linkedList<string> C;
+	// Add a methods to load your list from a file, and write your list to a file
+	// linkedList<string> B;
+	// linkedList<string> C;
 
 	// //loadFromFile should open the file of the specified name and
 	// //enter each item (words in the novel "Moby Dick" in this case)
