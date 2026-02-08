@@ -1,2 +1,0 @@
-A.mergeSort();
-	A.print();

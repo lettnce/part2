@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <chrono>
 using namespace std;
 
 template <typename T>
@@ -17,6 +18,7 @@ class linkedList {
         };
 
         node *head;
+        node *tail;
         node *current;
     
     public:
@@ -54,7 +56,13 @@ linkedList<T>::linkedList() : head(nullptr), current(nullptr) {}
 // TODO: write destructor
 template <typename T>
 linkedList<T>::~linkedList() {
-    ;
+    current = head;
+    while (current) {
+        node *next = current->next;
+        delete current;
+        current = next;
+    }
+    head = nullptr;
 }
 
 template <typename T>
@@ -83,13 +91,11 @@ template <typename T>
 void linkedList<T>::push_back(T d) {
     if (!head) {
         head = new node(d);
+        tail = head;
     }
     else {
-        current = head;
-        while (current->next) {
-            current = current->next;
-        }
-        current->next = new node(d);
+        tail->next = new node(d);
+        tail = tail->next;
     }
 }
 
@@ -145,7 +151,7 @@ void linkedList<T>::merge(linkedList<T> &l, linkedList<T> &r) {
     node *left = l.head;
     node *right = r.head;
 
-    while (left->next && right->next) {
+    while (left && right) {
         if (left->data < right->data) {
             push_back(left->data);
             l.pop_front();
@@ -173,10 +179,11 @@ void linkedList<T>::merge(linkedList<T> &l, linkedList<T> &r) {
 
 template <typename T>
 void linkedList<T>::loadFromFile(string s) {
-    fstream scanner(s);
-    string word;
+    fstream scanner;
+    string word = "";
+    scanner.open(s);
 
-    while (cin >> word) {
+    while (scanner >> word) {
         push_back(word);
     }
 
@@ -185,7 +192,20 @@ void linkedList<T>::loadFromFile(string s) {
 // TODO: write method
 template <typename T>
 void linkedList<T>::writeToFile(string s) {
-    ;
+    ofstream scanner(s);
+
+    if (!scanner.is_open()) {
+        cerr << "ERROR! Could not open file!";
+        return;
+    }
+
+    current = head;
+    while (current) {
+        scanner << current->data << "\n";
+        current = current->next;
+    }
+
+    scanner.close();
 }
 
 template <typename T>
@@ -214,12 +234,11 @@ void linkedList<T>::mergeSort() {
     }
 
     linkedList<T> l, r;
-    split(l, r);
 
+    split(l, r);
     l.mergeSort();
     r.mergeSort();
-    this->merge(l, r);
-    
+    merge(l, r);
 }
 
 #endif

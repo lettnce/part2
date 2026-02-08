@@ -8,23 +8,23 @@ int main()
 
 	//Implement a push_back method that adds a given item to the back of the list.
 	//Must run in O(1) time.
-	A.push_back(450);
-	A.push_back(320);
-	A.push_back(750);
-	A.push_back(510);
-	A.push_back(720);
-	A.push_back(230);
-	A.push_back(290);
-	A.push_back(240);
-	A.push_back(320);
-	A.push_back(820);
-	A.push_back(530);
-	A.push_back(210);
+	// A.push_back(450);
+	// A.push_back(320);
+	// A.push_back(750);
+	// A.push_back(510);
+	// A.push_back(720);
+	// A.push_back(230);
+	// A.push_back(290);
+	// A.push_back(240);
+	// A.push_back(320);
+	// A.push_back(820);
+	// A.push_back(530);
+	// A.push_back(210);
 
 	//Implement a simple print method to test your list.
-	A.print(); //450 320 750..... 530 210
-	A.mergeSort();
-	A.print();
+	// A.print(); //450 320 750..... 530 210
+	// A.mergeSort();
+	// A.print();
 
 	// linkedList<double> left;
 	// linkedList<double> right;
@@ -57,26 +57,55 @@ int main()
 
 
 	// Add a methods to load your list from a file, and write your list to a file
-	// linkedList<string> B;
-	// linkedList<string> C;
+	
 
-	// //loadFromFile should open the file of the specified name and
-	// //enter each item (words in the novel "Moby Dick" in this case)
-	// //in the linked list.
-	// B.loadFromFile("whale.txt");
-	// C.loadFromFile("whale.txt");
+	//loadFromFile should open the file of the specified name and
+	//enter each item (words in the novel "Moby Dick" in this case)
+	//in the linked list.
 
-	// //This line will sort all the words in the novel Moby Dick.
-	// //You are encouraged to write some testing code to ensure that
-	// //both lists are identical after sorting.
-	// // B.slowSort();
-	// // C.mergeSort();
+	linkedList<string> B;
+	linkedList<string> C;
+	
+	auto start = chrono::high_resolution_clock::now();
+	B.loadFromFile("whale.txt");
+	B.slowSort();
+	B.writeToFile("slowSortedWhale.txt");
+	auto finish = chrono::high_resolution_clock::now();
 
-	// //writeToFile should write each item in the linked list to the provided output file.
-	// //In this example, it should write all the words from Moby Dick to the provided output file in sorted order.
-	// //Double check to see if the two files below are properly sorted.
-	// B.writeToFile("slowSortedWhale.txt");
-	// C.writeToFile("mergeSortedWhale.txt");
+	chrono::duration<double> elapsed = finish - start;
+	cout << elapsed.count() << " seconds";
+	// slow file output
+	// string slow = "slowSortedWhale.txt";
+	// ofstream scannerSlow(slow);
+	// scannerSlow << "Slow sort took: " << elapsed.count() << " seconds";
+	// scannerSlow.close();
+	
+
+	auto start1 = chrono::high_resolution_clock::now();
+	C.loadFromFile("whale.txt");
+	C.mergeSort();
+	C.writeToFile("mergeSortedWhale.txt");
+	auto finish1 = chrono::high_resolution_clock::now();
+
+	chrono::duration<double> elapsed1 = finish1 - start1;
+	cout << elapsed1.count() << " seconds";
+	// merge file output
+	// string merge = "mergeSortedWhale.txt";
+	// ofstream scannerFast(merge);
+	// scannerFast << "Merge sort took: " << elapsed.count() << " seconds";
+	// scannerFast.close();
+
+	//This line will sort all the words in the novel Moby Dick.
+	//You are encouraged to write some testing code to ensure that
+	//both lists are identical after sorting.
+	
+	
+
+	//writeToFile should write each item in the linked list to the provided output file.
+	//In this example, it should write all the words from Moby Dick to the provided output file in sorted order.
+	//Double check to see if the two files below are properly sorted.
+	
+	
 
 
 	//For your running time report, test each
